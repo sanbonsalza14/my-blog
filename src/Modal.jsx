@@ -1,12 +1,13 @@
-function Modal({corlor, title, currntIndex, createDate, details}) {
-  return (
-    <div className='modal'>
-      {/* 상세페이지용 모달창 만들기 */}
-      <h4> {title[title]}</h4>
-      <p>{currntIndex[propscurrntIndex]}</p>
-      <p>{createDate[currntIndex]}</p>
-      <p>{details[c]}</p>
-    </div>
+// 하나의 컴포넌트(조각)
+// Props Drilling
+function Modal({color, title, currentIndex, createDate, details}){
+  return(
+    <div className='modal'
+      style={{background: color}}>
+        <h4>{title[currentIndex]}</h4>
+        <p>{createDate[currentIndex]}</p>
+        <p>{details[currentIndex]}</p>
+    </div>  
   )
 }
 

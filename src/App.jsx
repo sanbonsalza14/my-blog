@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css'
 import Modal from './Modal';
+import Title from './Title';
+
 
 function App() {
 
@@ -19,23 +21,22 @@ function App() {
     '2025-7-1',
   ]);
 
-  // ⬇️ 문법 오류 수정 (배열은 쉼표로 구분, 상태 이름/세터 올바르게)
   const [details, setDetails] = useState([
-    "심플한 디자인의 코트로 가을에 잘 어울림",
-    "강남 우동의 찐 맛집! 먹어보진 않았음",
-    "자바 스터디는 말 만하고 못함"
-  ]);
+    '심플한 디자인의 코트로 가을에 잘 어울림',
+    '강남 우동의 찐 맛집! 먹어보진 않았음',
+    '자바 스터디는 말 만하고 못함',
+  ])
 
   // 좋아요 누름 숫자를 보관할 스테이트
-  const [like, setLike] = useState([0, 0, 0]);
+  const [like, setLike] = useState([0,0,0]);
 
   // 좋아요 처리 함수
   // function addLikes(num){
   //   setLike(like[num]+1)
   // }
 
-  function changeTitle() {
-    const newTitle = [...title];
+  function changeTitle(){
+    const newTitle = [... title];
     newTitle[0] = '여자코드추천';
     setTitle(newTitle);
   }
@@ -48,14 +49,14 @@ function App() {
 
 
   // 제목 클릭 시 모달 보이기
-  function handleTitle(index) {
+  function handleTitle(index){
     // 조건 : 같은 제목을 클릭하면 나타나고 사라짐
     // 다른 제목을 클릭하면 그냥 보여야 하고..
-    if (!modal) {
+    if(! modal) {
       //1. 현재 모달이 닫혀있으면 연다.
       setModal(true);
       setCurrentIndex(index);
-    } else if (currentIndex === index) {
+    } else if(currentIndex === index){
       // 2. 같은 타이틀이 선택된 경우
       setModal(false);
     } else {
@@ -65,40 +66,35 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='black-bg'>
-        React + Vite로 만드는 블로그
-      </div>
+      
       {/* <h4 style={{color: 'red', fontSize: '20px'}}>{post}</h4> */}
+      {/* {타이틀이 위치할곳 } */}
+      <Blog 
+      title={title}
+      createDate={createDate}
+      details={details}
+      setTitle={setTitle}
+      setCreateDate={setCreateDate}
+      like={like}
+      setLike={setLike}
+      setDetails={setDetails}
+      currentIndex={currentIndex}
+      setCurrentIndex={setCurrentIndex}
+      modal={modal}
+      setModal={setModal}
 
-      {/* 타이틀 정렬하기 */}
-      <button onClick={() => {
-        const sortedTitle = [...title].sort()
-        setTitle(sortedTitle);
-      }}>글 정렬하기</button>
-
-      <div className='list'>
-        {title.map((item, index) => {
-          return (
-            <div key={index}>
-              <h4 onClick={() => handleTitle(index)}>
-                {title[index]}
-                <span onClick={() => {
-                  const newLikes = [...like]
-                  newLikes[index]++
-                  setLike(newLikes)
-                }}>👍
-                </span>{like[index]}
-              </h4>
-              <p>작성일 : {createDate[index]}</p>
-            </div>
-          )
-        })}
-      </div>
+      >
+        
+      </Blog>
 
       {/* 상세페이지 나타날 곳 */}
-      {modal ? <Modal color="lightblue" title={title}
-        currentIndex={currentIndex} /> : null}
-
+      {modal ? <Modal 
+          color="lightblue" 
+          title={title} 
+          currentIndex={currentIndex} 
+          createDate={createDate}
+          details={details}
+          />: null }
     </div>
   )
 }
