@@ -1,11 +1,11 @@
-function Modal(props) {
+function Modal({corlor, title, currntIndex, createDate, details}) {
   return (
-    <div className='modal'
-    style={{background: props.corlor}}>
+    <div className='modal'>
       {/* 상세페이지용 모달창 만들기 */}
-      <h4> {props.title}[props]</h4>
-      <p>날짜</p>
-      <p>상세내용</p>
+      <h4> {title[title]}</h4>
+      <p>{currntIndex[propscurrntIndex]}</p>
+      <p>{createDate[currntIndex]}</p>
+      <p>{details[c]}</p>
     </div>
   )
 }
