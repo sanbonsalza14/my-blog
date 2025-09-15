@@ -35,9 +35,9 @@ function App() {
   //   setLike(like[num]+1)
   // }
 
-  function changeTitle(){
-    const newTitle = [... title];
-    newTitle[0] = '여자코드추천';
+  function changeTitle() {
+    const newTitle = [...title];
+    newTitle[0] = '여자코트추천'; // ← 오타 수정
     setTitle(newTitle);
   }
 
@@ -46,7 +46,6 @@ function App() {
 
   // 직전 선택한 인덱스를 저장할 스테이트
   const [currentIndex, setCurrentIndex] = useState(null);
-
 
   // 제목 클릭 시 모달 보이기
   function handleTitle(index){
@@ -57,6 +56,7 @@ function App() {
       setModal(true);
       setCurrentIndex(index);
     } else if(currentIndex === index){
+
       // 2. 같은 타이틀이 선택된 경우
       setModal(false);
     } else {
