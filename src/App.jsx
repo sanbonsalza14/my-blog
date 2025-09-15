@@ -36,7 +36,7 @@ function App() {
   }
 
   //모달페이지가 보이게 /안보이게 자겁하기위한 스테이트
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
 
   return (
     <div className='App'>
@@ -53,7 +53,9 @@ function App() {
 
       <div className='list'>
         <div>
-          <h4>{title[0]}
+          <h4 onClick={()=>{
+            setModal
+          }}>{title[0]}
             <span onClick={() => {
               const newLikes = [...like];
               newLikes[0]++;
