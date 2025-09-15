@@ -20,16 +20,16 @@ function App() {
   ]);
 
   // 좋아요 누름 숫자를 보관할 스테이트
-  const [like, setLike] = useState([0, 0, 0]);
+  const [like, setLike] = useState([0,0,0]);
 
   // 좋아요 처리 함수
   // function addLikes(num){
   //   setLike(like[num]+1)
   // }
 
-  function changeTitle() {
-    const newTitle = [...title];
-    newTitle[0] = '여자코트추천'; // ← 오타 수정
+  function changeTitle(){
+    const newTitle = [... title];
+    newTitle[0] = '여자코드추천';
     setTitle(newTitle);
   }
 
@@ -39,15 +39,16 @@ function App() {
   // 직전 선택한 인덱스를 저장할 스테이트
   const [currentIndex, setCurrentIndex] = useState(null);
 
-  // 제목 클릭 시 모달 보이기 
-  function handleTitle(index) {
-    // 조건 : 같은 제목을 클릭하면 나타나고 사라짐 
+
+  // 제목 클릭 시 모달 보이기
+  function handleTitle(index){
+    // 조건 : 같은 제목을 클릭하면 나타나고 사라짐
     // 다른 제목을 클릭하면 그냥 보여야 하고..
-    if (!modal) {
-      // 1. 현재 모달이 닫혀있으면 연다.
+    if(! modal) {
+      //1. 현재 모달이 닫혀있으면 연다.
       setModal(true);
       setCurrentIndex(index);
-    } else if (currentIndex === index) {
+    } else if(currentIndex === index){
       // 2. 같은 타이틀이 선택된 경우
       setModal(false);
     } else {
@@ -63,35 +64,36 @@ function App() {
       {/* <h4 style={{color: 'red', fontSize: '20px'}}>{post}</h4> */}
 
       {/* 타이틀 정렬하기 */}
-      <button onClick={() => {
+      <button onClick={()=>{
         const sortedTitle = [...title].sort()
         setTitle(sortedTitle);
       }}>글 정렬하기</button>
 
       <div className='list'>
-        {title.map((item, index) => {
-          return (
+        {title.map((item, index)=>{
+          return(
             <div key={index}>
-              <h4 onClick={() => {
-                setModal(!modal)
-              }}>{title[index]}
-                <span onClick={() => {
-                  const newLikes = [...like]
+              <h4 onClick={()=> handleTitle(index)}>
+                    {title[index]}
+                <span onClick={()=>{
+                  const newLikes = [... like]
                   newLikes[index]++
                   setLike(newLikes)
-                }}>👍
-                </span>{like[index]}
-              </h4>
+                  }}>👍
+                </span>{like[index]} 
+              </h4>      
               <p>작성일 : {createDate[index]}</p>
-            </div>
+            </div>  
           )
-        })}
-
-        {/* 상세페이지 나타날 곳 */}
-        {modal ? <Modal /> : null}
+        })}           
       </div>
+
+      {/* 상세페이지 나타날 곳 */}
+      {modal ? <Modal color="lightblue"  title={title}
+      currentIndex={currentIndex} />: null }
+      
     </div>
   )
 }
 
-export default App;
+export default App
