@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css'
 import Modal from './Modal';
 import Title from './Title';
-
+import Blog from './Blog';
 
 function App() {
 
@@ -35,9 +35,9 @@ function App() {
   //   setLike(like[num]+1)
   // }
 
-  function changeTitle() {
-    const newTitle = [...title];
-    newTitle[0] = '여자코트추천'; // ← 오타 수정
+  function changeTitle(){
+    const newTitle = [... title];
+    newTitle[0] = '여자코드추천';
     setTitle(newTitle);
   }
 
@@ -46,46 +46,30 @@ function App() {
 
   // 직전 선택한 인덱스를 저장할 스테이트
   const [currentIndex, setCurrentIndex] = useState(null);
-
-  // 제목 클릭 시 모달 보이기
-  function handleTitle(index){
-    // 조건 : 같은 제목을 클릭하면 나타나고 사라짐
-    // 다른 제목을 클릭하면 그냥 보여야 하고..
-    if(! modal) {
-      //1. 현재 모달이 닫혀있으면 연다.
-      setModal(true);
-      setCurrentIndex(index);
-    } else if(currentIndex === index){
-
-      // 2. 같은 타이틀이 선택된 경우
-      setModal(false);
-    } else {
-      setCurrentIndex(index);
-    }
-  }
+  
 
   return (
     <div className='App'>
-      
-      {/* <h4 style={{color: 'red', fontSize: '20px'}}>{post}</h4> */}
-      {/* {타이틀이 위치할곳 } */}
-      <Blog 
-      title={title}
-      createDate={createDate}
-      details={details}
-      setTitle={setTitle}
-      setCreateDate={setCreateDate}
-      like={like}
-      setLike={setLike}
-      setDetails={setDetails}
-      currentIndex={currentIndex}
-      setCurrentIndex={setCurrentIndex}
-      modal={modal}
-      setModal={setModal}
+      {/* Title이 위치할 곳 */}
+      <Title />
 
-      >
-        
-      </Blog>
+      {/* <h4 style={{color: 'red', fontSize: '20px'}}>{post}</h4> */}
+
+      {/* Blog 위치할 곳 */}
+      <Blog 
+        title={title}
+        createDate={createDate}
+        details={details}
+        setTitle={setTitle}
+        setCreateDate={setCreateDate}
+        like={like}
+        setLike={setLike}
+        setDetails={setDetails}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        modal={modal}
+        setModal={setModal}
+      />
 
       {/* 상세페이지 나타날 곳 */}
       {modal ? <Modal 
